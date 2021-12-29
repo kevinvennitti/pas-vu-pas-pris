@@ -1,0 +1,73 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<h1>C : vitrine</h1>
+
+<audio controls src="/voix/c/c-before.m4a" id="before"></audio>
+<audio controls src="/voix/c/c-bonne.m4a" id="main"></audio>
+<audio controls src="/voix/c/c-oula.m4a" id="main2"></audio>
+
+<script src="lib/jquery-3.4.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  var socket = io.connect('http://<%= ip; %>:<%= port; %>');
+
+  $(function(){
+
+
+        var before = $('#before')[0];
+        var main = $('#main')[0];
+        var main2 = $('#main2')[0];
+
+        socket.on('c/before/play', function () {
+          before.play();
+        });
+
+        socket.on('c/before/pause', function () {
+          before.pause();
+        });
+
+        socket.on('c/before/playfromstart', function () {
+          before.currentTime = 0.001;
+          before.play();
+        });
+
+
+
+
+        socket.on('c/main/play', function () {
+          main.play();
+        });
+
+        socket.on('c/main/pause', function () {
+          main.pause();
+        });
+
+        socket.on('c/main/playfromstart', function () {
+          main.currentTime = 0.001;
+          main.play();
+        });
+
+
+
+
+        socket.on('c/main2/play', function () {
+          main2.play();
+        });
+
+        socket.on('c/main2/pause', function () {
+          main2.pause();
+        });
+
+        socket.on('c/main2/playfromstart', function () {
+          main2.currentTime = 0.001;
+          main2.play();
+        });
+
+
+  });
+
+  const scale = (num, in_min, in_max, out_min, out_max) => {
+    return Math.min(Math.max((num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min, out_min), out_max);
+  }
+</script>

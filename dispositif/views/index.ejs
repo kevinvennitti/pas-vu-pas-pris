@@ -1,0 +1,126 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<h1>admin</h1>
+
+<hr>
+
+<h1>Intro : socle</h1>
+
+<h2>Before (psst)</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="intro/main/play">PLAY</button>
+  <button class="sendCommand" data-command="intro/main/pause">PAUSE</button>
+  <button class="sendCommand" data-command="intro/main/playfromstart">PLAY FROM START</button>
+</div>
+
+<hr>
+
+<h1>A : socle</h1>
+
+<h2>Before (looping)</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="a/before/play">PLAY</button>
+  <button class="sendCommand" data-command="a/before/pause">PAUSE</button>
+  <button class="sendCommand" data-command="a/before/playfromstart">PLAY FROM START</button>
+</div>
+
+<h2>Main</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="a/main/play">PLAY</button>
+  <button class="sendCommand" data-command="a/main/pause">PAUSE</button>
+  <button class="sendCommand" data-command="a/main/playfromstart">PLAY FROM START</button>
+</div>
+
+<button class="sendCommandServer" data-command="a/prisme/go">Go James Bond</button>
+<button class="sendCommandServer" data-command="a/prisme/stop">Stop</button>
+
+
+
+
+
+
+<hr>
+
+<h1>B : mur</h1>
+
+<div class="buttons">
+  <button class="sendCommand" data-command="b/before/play">PLAY VIDEO</button>
+  <button class="sendCommand" data-command="b/before/pause">PAUSE</button>
+  <button class="sendCommand" data-command="b/before/playfromstart">PLAY FROM START</button>
+</div>
+
+
+
+
+
+
+
+
+<hr>
+
+<h1>C : vitrine</h1>
+
+<h2>Intro</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="c/before/play">PLAY</button>
+  <button class="sendCommand" data-command="c/before/pause">PAUSE</button>
+  <button class="sendCommand" data-command="c/before/playfromstart">PLAY FROM START</button>
+</div>
+
+<h2>Bonne carte (À DROITE)</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="c/main/play">PLAY</button>
+  <button class="sendCommand" data-command="c/main/pause">PAUSE</button>
+  <button class="sendCommand" data-command="c/main/playfromstart">PLAY FROM START</button>
+</div>
+
+<h2>Oula (CARTE À GAUCHE)</h2>
+<div class="buttons">
+  <button class="sendCommand" data-command="c/main2/play">PLAY</button>
+  <button class="sendCommand" data-command="c/main2/pause">PAUSE</button>
+  <button class="sendCommand" data-command="c/main2/playfromstart">PLAY FROM START</button>
+</div>
+
+<script src="lib/jquery-3.4.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://<%= ip; %>:<%= port; %>');
+
+  $(function(){
+    $('.sendCommand').on('click', function(){
+      socket.emit('sendCommand/client_to_server_to_client', {
+        command: $(this).data('command')
+      })
+    });
+
+
+      $('.sendCommandServer').on('click', function(){
+        socket.emit('sendCommand/'+$(this).data('command'), {
+        })
+      });
+
+    socket.on('sensor/b/proximity', function(data) {
+      $('#b_proximity_triggered').text(data.triggered);
+      $('#b_proximity_centimeters').text(data.centimeters);
+    });
+  });
+
+  const scale = (num, in_min, in_max, out_min, out_max) => {
+    return Math.min(Math.max((num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min, out_min), out_max);
+  }
+</script>
+
+<style type="text/css">
+
+  button {
+    padding:20px 5px;
+    font-size:20px;
+    width:100%;
+  }
+
+  .buttons button {
+    width:31%;
+    padding:5px;
+  }
+
+</style>

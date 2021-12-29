@@ -1,0 +1,41 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<h1>B : mur</h1>
+
+<video controls>
+  <source src="/video.mp4" id="before" fullscreen type="video/mp4">
+  </video>
+
+<script src="lib/jquery-3.4.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  var socket = io.connect('http://<%= ip; %>:<%= port; %>');
+
+  $(function(){
+
+    var before = $('#before')[0];
+
+    socket.on('b/before/play', function () {
+      before.play();
+    });
+
+    socket.on('b/before/pause', function () {
+      before.pause();
+    });
+
+    socket.on('b/before/playfromstart', function () {
+      before.currentTime = 0.001;
+      before.play();
+    });
+
+
+
+
+
+  });
+
+  const scale = (num, in_min, in_max, out_min, out_max) => {
+    return Math.min(Math.max((num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min, out_min), out_max);
+  }
+</script>
