@@ -8,7 +8,7 @@ Que serait le jeu sans la triche ? Du tripot à la cours de Versailles, les tomp
 Pas vu pas pris est une expérience localisée autour du tableau « Les tricheurs » de Le Caravage. À l’arrivée du visiteur, le tableau prend vie et le questionne sur la triche dans le jeu et la vie. Ce sont ensuite plusieurs cartes qui prennent vie pour expliquer les techniques des meilleurs tricheurs à travers l’histoire. La visite se termine avec l’histoire d’un beau coup à Las Vegas et une réflexion philosophique sur l’art de la triche.
 
 - [Scénario détaillé](https://docs.google.com/document/d/1OF8p0h2CxJmO-eV7D0-nEo9zNL7D1slYQhyUgH9SgZg/edit)
-- [Tutoriel de mise en place et de médiation](/tutoriel)
+- [Tutoriel de mise en place et de médiation](/tutoriel) ([version en ligne](https://kevinvennitti.com/p/pas-vu-pas-pris-tutoriel))
 
 ## Intentions & Processes
 L’équipe a rapidement trouvé un terrain d’entente avec le thème de l’art de la triche dans le jeu. Pour rendre concrète cette thématique, nous avons voulu donner vie aux cartes et offrir une expérience de manipulation des éléments représentés. Notre objectif était de créer un dispositif autoporteur où la technologie questionnait le visiteur et ne nécessitait pas de médiation.
